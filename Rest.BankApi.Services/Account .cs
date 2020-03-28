@@ -1,4 +1,5 @@
 ﻿using System;
+using Rest.BankApi.Services.Consts;
 
 namespace Rest.BankApi.Services
 {
@@ -26,12 +27,12 @@ namespace Rest.BankApi.Services
                 }
                 else
                 {
-                    throw new Exception("Account is unverified");
+                    throw new Exception(Messages.AccountIsUnverified);
                 }
             }
             else
             {
-                throw new Exception("Account is closed");
+                throw new Exception(Messages.AccountIsClosed);
             }
         }
 
@@ -52,8 +53,18 @@ namespace Rest.BankApi.Services
             }
             else
             {
-                throw new Exception("Account is closed");
+                throw new Exception(Messages.AccountIsClosed);
             }
+        }
+
+        public void Close()
+        {
+            if (IsVerified() && IsOpen()) _isOpen = false;
+        }
+
+        public void Freeze()
+        {
+            if (IsVerified() && IsOpen()) _isFreeze = true;
         }
 
         private bool IsVerified()
@@ -70,7 +81,5 @@ namespace Rest.BankApi.Services
         {
             return _isFreeze;
         }
-
-
     }
 }
