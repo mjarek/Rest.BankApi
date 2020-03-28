@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rest.BankApi", "Rest.BankAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rest.BankApi.Services", "Rest.BankApi.Services\Rest.BankApi.Services.csproj", "{CCB4D164-32E2-4A1E-901B-D1EDCA07D6E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rest.BankApi.Services.Tests.Unit", "Rest.BankApi.Services.Tests.Unit\Rest.BankApi.Services.Tests.Unit.csproj", "{A9D0A829-8C90-432C-A2AC-80EC94369F1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CCB4D164-32E2-4A1E-901B-D1EDCA07D6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCB4D164-32E2-4A1E-901B-D1EDCA07D6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCB4D164-32E2-4A1E-901B-D1EDCA07D6E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D0A829-8C90-432C-A2AC-80EC94369F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D0A829-8C90-432C-A2AC-80EC94369F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D0A829-8C90-432C-A2AC-80EC94369F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D0A829-8C90-432C-A2AC-80EC94369F1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@ namespace Rest.BankApi.Services
         public Account(Guid id)
         {
             Id = id;
-            Status = StatusAccount.UnVerified;
+            Status = StatusAccount.Unverified;
         }
         public Guid Id { get; }
         public StatusAccount Status { get; set; }
@@ -17,12 +17,43 @@ namespace Rest.BankApi.Services
 
         public void Withdrawal(decimal amount)
         {
-            Balance -= amount;
+            if (IsOpen())
+            {
+                if (IsVerified())
+                {
+                    Balance -= amount;
+                    if (IsFreeze()) _isFreeze = false;
+                }
+                else
+                {
+                    throw new Exception("Account is unverified");
+                }
+            }
+            else
+            {
+                throw new Exception("Account is closed");
+            }
         }
 
         public void Deposit(decimal amount)
         {
-            Balance += amount;
+            if (IsOpen())
+            {
+                if (!IsVerified())
+                {
+                    Status = StatusAccount.Verified;
+                }
+
+                if (IsFreeze())
+                {
+                    _isFreeze = false;
+                }
+                Balance += amount;
+            }
+            else
+            {
+                throw new Exception("Account is closed");
+            }
         }
 
         private bool IsVerified()

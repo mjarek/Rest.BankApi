@@ -2,7 +2,7 @@
 {
     public enum StatusAccount
     {
-        UnVerified,
+        Unverified,
         Verified
     }
 }
