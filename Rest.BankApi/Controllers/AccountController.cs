@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Rest.BankApi.Interfaces;
 using Rest.BankApi.Requests;
