@@ -1,12 +1,7 @@
 import React from 'react';
+import styles from '../css/button.css'
 
 class DepositButton extends React.Component {
-    constructor(props){
-      super(props)
-      this.state = {
-        color: 'green'
-      };
-    }
     callDeposit() {
       fetch('http://localhost:52233/api/Accounts/b8bfc789-ad06-4820-9f4a-906e90aa8d49/Deposit', {
         method: 'PUT',
@@ -26,8 +21,9 @@ class DepositButton extends React.Component {
       render(){
         return (
           <div>
-          <button onClick={this.callDeposit}>Wpłać 1000 zł</button>
+            <button className="btn green" onClick={this.callDeposit}>Wpłać 1000 zł</button>
           </div>
+
         )
       }
     }

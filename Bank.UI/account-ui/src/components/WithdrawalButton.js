@@ -1,12 +1,7 @@
 import React from 'react';
+import styles from '../css/button.css'
 
 class WithdrawalButton extends React.Component {
-    constructor(props){
-      super(props)
-      this.state = {
-        color: 'green'
-      };
-    }
     callWithdrawal() {
       fetch('http://localhost:52233/api/Accounts/b8bfc789-ad06-4820-9f4a-906e90aa8d49/Withdrawal', {
         method: 'PUT',
@@ -26,7 +21,7 @@ class WithdrawalButton extends React.Component {
       render(){
         return (
           <div>
-          <button onClick={this.callWithdrawal}>Wypłać 250 zł</button>
+          <button className="btn red" onClick={this.callWithdrawal}>Wypłać 250 zł</button>
           </div>
         )
       }
