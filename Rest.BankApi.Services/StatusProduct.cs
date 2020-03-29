@@ -1,6 +1,6 @@
 ﻿namespace Rest.BankApi.Services
 {
-    public enum StatusAccount
+    public enum StatusProduct
     {
         Open,
         Freeze,

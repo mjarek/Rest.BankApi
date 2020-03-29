@@ -1,31 +1,32 @@
 ﻿using System;
 using Rest.BankApi.Services.Consts;
+using Rest.BankApi.Services.Extensions;
 
 namespace Rest.BankApi.Services
 {
-    public class Account
+    public class Account : IProduct, IAccount
     {
         public Account(Guid id)
         {
             Id = id;
-            Status = StatusAccount.Open;
+            Status = StatusProduct.Open;
             StatusOwner = StatusOwner.Unverified;
         }
         public Guid Id { get; }
-        public StatusAccount Status { get; set; }
+        public StatusProduct Status { get; set; }
         public StatusOwner StatusOwner { get; set; }
         public decimal Balance { get; set; }
 
         public void Withdrawal(decimal amount)
         {
-            if (IsOpen())
+            if (this.IsOpen())
             {
-                if (IsVerified())
+                if (this.IsVerified())
                 {
                     Balance -= amount;
-                    if (IsFreeze())
+                    if (this.IsFreeze())
                     {
-                        Status = StatusAccount.Open;
+                        Status = StatusProduct.Open;
                     }
                 }
                 else
@@ -41,16 +42,16 @@ namespace Rest.BankApi.Services
 
         public void Deposit(decimal amount)
         {
-            if (IsOpen())
+            if (this.IsOpen())
             {
-                if (!IsVerified())
+                if (!this.IsVerified())
                 {
                     StatusOwner = StatusOwner.Verified;
                 }
 
-                if (IsFreeze())
+                if (this.IsFreeze())
                 {
-                    Status = StatusAccount.Open;
+                    Status = StatusProduct.Open;
                 }
                 Balance += amount;
             }
@@ -58,38 +59,6 @@ namespace Rest.BankApi.Services
             {
                 throw new Exception(Messages.AccountIsClosed);
             }
-        }
-
-        public void Close()
-        {
-            if (IsVerified() && IsOpen())
-            {
- 
-                Status = StatusAccount.Close;
-            }
-        }
-
-        public void Freeze()
-        {
-            if (IsVerified() && IsOpen())
-            {
-                Status = StatusAccount.Freeze;
-            }
-        }
-
-        private bool IsVerified()
-        {
-            return StatusOwner == StatusOwner.Verified;
-        }
-
-        private bool IsOpen()
-        {
-            return Status != StatusAccount.Close;
-        }
-
-        private bool IsFreeze()
-        {
-            return Status == StatusAccount.Freeze;
         }
     }
 }

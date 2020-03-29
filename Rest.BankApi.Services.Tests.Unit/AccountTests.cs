@@ -8,6 +8,7 @@ namespace Rest.BankApi.Services.Tests.Unit
     public class AccountTests
     {
         private Account _account;
+        private IProductManager _productManager;
         private const decimal InitialBalance = 150;
         private const decimal Amount = 49.99m;
 
@@ -18,6 +19,7 @@ namespace Rest.BankApi.Services.Tests.Unit
             {
                 Balance = InitialBalance
             };
+            _productManager = new ProductManager(_account);
         }
 
         [Test]
@@ -81,7 +83,7 @@ namespace Rest.BankApi.Services.Tests.Unit
 
             //Arrange
             _account.StatusOwner = StatusOwner.Verified;
-            _account.Close();
+            _productManager.CloseProduct();
 
             //Act//Assert
             _account.Invoking(y => y.Deposit(Amount))
@@ -98,13 +100,13 @@ namespace Rest.BankApi.Services.Tests.Unit
         {
             //Arrange
             _account.StatusOwner = StatusOwner.Verified;
-            _account.Status = StatusAccount.Open;
+            _account.Status = StatusProduct.Open;
 
             ////Act
-            _account.Freeze();
+            _productManager.FreezeProduct();
 
             //Assert
-            _account.Status.Should().BeEquivalentTo(StatusAccount.Freeze);
+            _account.Status.Should().BeEquivalentTo(StatusProduct.Freeze);
         }
 
         [Test]
@@ -112,13 +114,13 @@ namespace Rest.BankApi.Services.Tests.Unit
         {
             //Arrange
             _account.StatusOwner = StatusOwner.Verified;
-            _account.Status = StatusAccount.Close;
+            _account.Status = StatusProduct.Close;
 
             ////Act
-            _account.Freeze();
+            _productManager.FreezeProduct();
 
             //Assert
-            _account.Status.Should().BeEquivalentTo(StatusAccount.Close);
+            _account.Status.Should().BeEquivalentTo(StatusProduct.Close);
         }
 
         [Test]
@@ -126,13 +128,13 @@ namespace Rest.BankApi.Services.Tests.Unit
         {
             //Arrange
             _account.StatusOwner = StatusOwner.Verified;
-            _account.Status = StatusAccount.Open;
+            _account.Status = StatusProduct.Open;
 
             ////Act
-            _account.Close();
+            _productManager.CloseProduct();
 
             //Assert
-            _account.Status.Should().BeEquivalentTo(StatusAccount.Close);
+            _account.Status.Should().BeEquivalentTo(StatusProduct.Close);
         }
 
         [Test]
@@ -140,13 +142,13 @@ namespace Rest.BankApi.Services.Tests.Unit
         {
             //Arrange
             _account.StatusOwner = StatusOwner.Verified;
-            _account.Status = StatusAccount.Freeze;
+            _account.Status = StatusProduct.Freeze;
 
             ////Act
-            _account.Close();
+            _productManager.CloseProduct();
 
             //Assert
-            _account.Status.Should().BeEquivalentTo(StatusAccount.Close);
+            _account.Status.Should().BeEquivalentTo(StatusProduct.Close);
         }
 
         [Test]
@@ -154,13 +156,13 @@ namespace Rest.BankApi.Services.Tests.Unit
         {
             //Arrange
             _account.StatusOwner = StatusOwner.Verified;
-            _account.Status = StatusAccount.Freeze;
+            _account.Status = StatusProduct.Freeze;
 
             ////Act
             _account.Deposit(Amount);
 
             //Assert
-            _account.Status.Should().BeEquivalentTo(StatusAccount.Open);
+            _account.Status.Should().BeEquivalentTo(StatusProduct.Open);
             _account.Balance.Should().Be(InitialBalance + Amount);
         }
 
@@ -169,13 +171,13 @@ namespace Rest.BankApi.Services.Tests.Unit
         {
             //Arrange
             _account.StatusOwner = StatusOwner.Verified;
-            _account.Status = StatusAccount.Freeze;
+            _account.Status = StatusProduct.Freeze;
 
             ////Act
             _account.Withdrawal(Amount);
 
             //Assert
-            _account.Status.Should().BeEquivalentTo(StatusAccount.Open);
+            _account.Status.Should().BeEquivalentTo(StatusProduct.Open);
             _account.Balance.Should().Be(InitialBalance - Amount);
         }
     }
