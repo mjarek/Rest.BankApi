@@ -2,6 +2,7 @@
 {
     public enum StatusProduct
     {
+        Undefined,
         Open,
         Freeze,
         Close
