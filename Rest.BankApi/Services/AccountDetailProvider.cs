@@ -1,9 +1,9 @@
 ﻿using System;
+using Rest.BankApi.Interfaces;
 using Rest.BankApi.Responses;
-using Rest.BankApi.Services;
 using Rest.BankApi.Services.Enums;
 
-namespace Rest.BankApi
+namespace Rest.BankApi.Services
 {
     public class AccountDetailProvider : IAccountDetailProvider
     {
@@ -70,7 +70,7 @@ namespace Rest.BankApi
                 Balance = 0,
                 Message = msq,
                 StatusProduct = StatusProduct.Undefined,
-                Success = true
+                Success = false
             };
         }
     }

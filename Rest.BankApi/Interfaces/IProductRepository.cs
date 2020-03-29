@@ -1,7 +1,7 @@
 ﻿using System;
 using Rest.BankApi.Services;
 
-namespace Rest.BankApi
+namespace Rest.BankApi.Interfaces
 {
     public interface IProductRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace Rest.BankApi.Controllers
+﻿namespace Rest.BankApi.Requests
 {
     public class AccountRequest
     {
