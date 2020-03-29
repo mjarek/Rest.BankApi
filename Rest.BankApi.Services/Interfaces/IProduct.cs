@@ -1,4 +1,6 @@
-﻿namespace Rest.BankApi.Services
+﻿using Rest.BankApi.Services.Enums;
+
+namespace Rest.BankApi.Services.Interfaces
 {
     public interface IProduct
     {

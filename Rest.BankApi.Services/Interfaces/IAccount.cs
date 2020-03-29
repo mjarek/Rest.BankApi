@@ -1,4 +1,4 @@
-﻿namespace Rest.BankApi.Services
+﻿namespace Rest.BankApi.Services.Interfaces
 {
     public interface IAccount
     {

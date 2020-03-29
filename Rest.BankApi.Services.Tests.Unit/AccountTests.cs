@@ -2,6 +2,8 @@ using System;
 using FluentAssertions;
 using NUnit.Framework;
 using Rest.BankApi.Services.Consts;
+using Rest.BankApi.Services.Enums;
+using Rest.BankApi.Services.Interfaces;
 
 namespace Rest.BankApi.Services.Tests.Unit
 {
