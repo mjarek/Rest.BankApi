@@ -32,5 +32,33 @@ namespace Rest.BankApi.Controllers
             }
             return Ok(result);
         }
+
+        [HttpPut]
+        [Route("{id}/Deposit")]
+        [ProducesResponseType(typeof(Result), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Result), (int)HttpStatusCode.NotFound)]
+        public ObjectResult Deposit([FromRoute] Guid id, [FromBody]AccountRequest dto)
+        {
+            var result = _detailProvider.Deposit(id, dto.Amount);
+            if (result == null || result.Success == false)
+            {
+                return NotFound(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [Route("{id}/Withdrawal")]
+        [ProducesResponseType(typeof(Result), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Result), (int)HttpStatusCode.NotFound)]
+        public ObjectResult Withdrawal([FromRoute] Guid id, [FromBody]AccountRequest dto)
+        {
+            var result = _detailProvider.Withdrawal(id, dto.Amount);
+            if (result == null || result.Success == false)
+            {
+                return NotFound(result);
+            }
+            return Ok(result);
+        }
     }
 }
