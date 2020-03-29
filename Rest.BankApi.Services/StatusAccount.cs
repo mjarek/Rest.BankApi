@@ -2,7 +2,8 @@
 {
     public enum StatusAccount
     {
-        Unverified,
-        Verified
+        Open,
+        Freeze,
+        Close
     }
 }

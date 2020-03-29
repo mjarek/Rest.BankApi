@@ -8,13 +8,13 @@ namespace Rest.BankApi.Services
         public Account(Guid id)
         {
             Id = id;
-            Status = StatusAccount.Unverified;
+            Status = StatusAccount.Open;
+            StatusOwner = StatusOwner.Unverified;
         }
         public Guid Id { get; }
         public StatusAccount Status { get; set; }
+        public StatusOwner StatusOwner { get; set; }
         public decimal Balance { get; set; }
-        private bool _isOpen = true;
-        private bool _isFreeze;
 
         public void Withdrawal(decimal amount)
         {
@@ -23,7 +23,10 @@ namespace Rest.BankApi.Services
                 if (IsVerified())
                 {
                     Balance -= amount;
-                    if (IsFreeze()) _isFreeze = false;
+                    if (IsFreeze())
+                    {
+                        Status = StatusAccount.Open;
+                    }
                 }
                 else
                 {
@@ -42,12 +45,12 @@ namespace Rest.BankApi.Services
             {
                 if (!IsVerified())
                 {
-                    Status = StatusAccount.Verified;
+                    StatusOwner = StatusOwner.Verified;
                 }
 
                 if (IsFreeze())
                 {
-                    _isFreeze = false;
+                    Status = StatusAccount.Open;
                 }
                 Balance += amount;
             }
@@ -59,27 +62,34 @@ namespace Rest.BankApi.Services
 
         public void Close()
         {
-            if (IsVerified() && IsOpen()) _isOpen = false;
+            if (IsVerified() && IsOpen())
+            {
+ 
+                Status = StatusAccount.Close;
+            }
         }
 
         public void Freeze()
         {
-            if (IsVerified() && IsOpen()) _isFreeze = true;
+            if (IsVerified() && IsOpen())
+            {
+                Status = StatusAccount.Freeze;
+            }
         }
 
         private bool IsVerified()
         {
-            return Status == StatusAccount.Verified;
+            return StatusOwner == StatusOwner.Verified;
         }
 
         private bool IsOpen()
         {
-            return _isOpen;
+            return Status != StatusAccount.Close;
         }
 
         private bool IsFreeze()
         {
-            return _isFreeze;
+            return Status == StatusAccount.Freeze;
         }
     }
 }
