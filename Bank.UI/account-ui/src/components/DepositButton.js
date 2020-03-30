@@ -21,7 +21,7 @@ class DepositButton extends React.Component {
       render(){
         return (
           <div>
-            <button className="btn green" onClick={this.callDeposit}>Wpłać 1000 zł</button>
+            <button className="btn green" onClick={this.callDeposit}>Deposit 1000 zł</button>
           </div>
 
         )

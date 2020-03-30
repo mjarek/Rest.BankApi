@@ -9,8 +9,8 @@ class ResultTable extends React.Component {
         return (
           <div>
           <p><b>Your status account is :</b></p>
-            <p>Status : ''</p>
-            <p>Balance : ''</p>
+            <p>Status : {this.props.status}</p>
+            <p>Balance :{this.props.balance}</p>
           </div>
           
         )
