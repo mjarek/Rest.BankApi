@@ -9,9 +9,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    
-        <AppContainer />
-       ,
+    <AppContainer />,
   </React.StrictMode>,
   document.getElementById('root')
 );
