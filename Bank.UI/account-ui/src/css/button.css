@@ -1,0 +1,11 @@
+.btn {
+    border-radius: 8px;
+    color: white;
+    font-size: 30px;
+  }
+  .btn.green{
+    background: green;
+  }
+  .btn.red {
+    background: red;
+  }
