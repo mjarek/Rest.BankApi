@@ -7,7 +7,8 @@ class AppContainer extends React.Component {
     constructor(props){
     super(props)
     this.state={balance: '',
-                status: '' }
+                status: '',
+                message:'' }
     this.callWithdrawal=this.callWithdrawal.bind(this)
     this.callDeposit=this.callDeposit.bind(this)
     }
@@ -23,7 +24,7 @@ class AppContainer extends React.Component {
         })
             .then(response => response.json())
             .then(response => {
-                this.setState({ balance: response.balance, status: response.statusProduct })
+                this.setState({ balance: response.balance, status: response.statusProduct, message: response.message })
             })
     }
 
@@ -39,7 +40,7 @@ class AppContainer extends React.Component {
         })
             .then(response => response.json())
             .then(response => {
-                this.setState({ balance: response.balance, status: response.statusProduct })
+                this.setState({ balance: response.balance, status: response.statusProduct, message: response.message })
             })
     }
     render(){
@@ -53,7 +54,7 @@ class AppContainer extends React.Component {
       >
           <DepositButton onClickHandler={this.callDeposit}/>
           <WithdrawalButton onClickHandler={this.callWithdrawal}/>
-          <ResultTable balance ={this.state.balance} status={this.state.status} />
+          <ResultTable balance ={this.state.balance} status={this.state.status} message={this.state.message} />
       </div>
       )
     }
